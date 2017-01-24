@@ -53,7 +53,7 @@ public class Input {
 	}
 	
 	private void onMouseMove(double xpos, double ypos) {
-		
+
 	}
 	
 	private void onMouseScroll(double xoffset, double yoffset) {

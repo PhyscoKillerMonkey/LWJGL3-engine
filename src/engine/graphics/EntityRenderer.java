@@ -14,17 +14,17 @@ import org.joml.Vector4f;
 
 import engine.camera.Camera;
 import engine.entity.Entity;
+import engine.entity.PointLight;
 import engine.graphics.model.Model;
 import engine.graphics.model.Texture;
-import engine.graphics.shader.BasicShader2;
-import engine.graphics.shader.PointLight;
+import engine.graphics.shader.BasicShader;
 
 public class EntityRenderer {
   
-  private BasicShader2 shader;
+  private BasicShader shader;
   private Transformation transform;
   
-  public EntityRenderer(BasicShader2 shader) {
+  public EntityRenderer(BasicShader shader) {
     this.shader = shader;
     this.transform = new Transformation();
   }

@@ -9,14 +9,14 @@ import org.joml.Vector3f;
 import engine.IGameLogic;
 import engine.camera.Camera;
 import engine.entity.Entity;
+import engine.entity.PointLight;
+import engine.entity.PointLight.Attenuation;
 import engine.graphics.MasterRenderer;
 import engine.graphics.Window;
 import engine.graphics.model.Material;
 import engine.graphics.model.Model;
 import engine.graphics.model.OBJLoader;
 import engine.graphics.model.Texture;
-import engine.graphics.shader.PointLight;
-import engine.graphics.shader.PointLight.Attenuation;
 import engine.input.Input;
 
 public class Game implements IGameLogic {
@@ -40,13 +40,15 @@ public class Game implements IGameLogic {
     camera = new Camera();
     
     // Set up lighting
-    ambientLight = new Vector3f(0.3f, 0.3f, 0.3f);
+    ambientLight = new Vector3f(0.5f, 0.5f, 0.5f);
+    
     Vector3f lightColor = new Vector3f(1f, 1f, 1f);
-    Vector3f lightPosition = new Vector3f(0f, 0f, 1f);
-    float lightIntensity = 2.0f;
+    Vector3f lightPosition = new Vector3f(10f, 10f, 10f);
+    float lightIntensity = 200.0f;
     pointLight = new PointLight(lightColor, lightPosition, lightIntensity);
     pointLight.setAttenuation(new Attenuation(0f, 0f, 0.5f));
     
+    // Set up models
     Model cube = OBJLoader.loadModel("cube.obj");
     Texture texture = new Texture("grass.png");
     Material material = new Material(texture, 1f);
@@ -57,6 +59,10 @@ public class Game implements IGameLogic {
     Model bunny = OBJLoader.loadModel("bunny.obj");
     bunny.setMaterial(new Material(new Vector3f(0.8f, 0.5f, 0.5f), 2f));
     entities.add(new Entity(bunny, new Vector3f(0f, 0f, -5f)));
+    
+    Model plane = OBJLoader.loadModel("plane.obj");
+    plane.setMaterial(new Material(new Vector3f(0.6f, 0.75f, 0.44f), 0.2f));
+    entities.add(new Entity(plane, new Vector3f(0f, -2f, 0f)));
   }
 
   @Override
@@ -97,6 +103,8 @@ public class Game implements IGameLogic {
     if (input.keys[GLFW_KEY_K]) dz += moveAmount;
     if (input.keys[GLFW_KEY_J]) dx -= moveAmount;
     if (input.keys[GLFW_KEY_L]) dx += moveAmount;
+    if (input.keys[GLFW_KEY_U]) dy += moveAmount;
+    if (input.keys[GLFW_KEY_H]) dy -= moveAmount;
     
     pointLight.movePosition(dx, dy, dz);
   }

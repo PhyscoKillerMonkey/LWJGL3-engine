@@ -22,7 +22,7 @@ public class GameEngine {
   
   // Set to -1 to disable the caps
   private float updateCap = 60;
-  private float frameCap = 120;
+  private float frameCap = 60;
 
   public GameEngine(String title, int width, int height, IGameLogic gameLogic) {
     glfwSetErrorCallback(errorCallBack = GLFWErrorCallback.createPrint(System.err));

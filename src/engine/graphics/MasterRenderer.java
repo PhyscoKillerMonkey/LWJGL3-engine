@@ -10,14 +10,14 @@ import org.joml.Vector3f;
 
 import engine.camera.Camera;
 import engine.entity.Entity;
+import engine.entity.PointLight;
 import engine.graphics.model.Model;
-import engine.graphics.shader.BasicShader2;
-import engine.graphics.shader.PointLight;
+import engine.graphics.shader.BasicShader;
 import engine.graphics.shader.Shader;
 
 public class MasterRenderer {
   
-  private BasicShader2 shader;
+  private BasicShader shader;
   private EntityRenderer entityRenderer;
 
   private Transformation transform;
@@ -25,7 +25,7 @@ public class MasterRenderer {
   private HashMap<Model, ArrayList<Entity>> entities = new HashMap<>();
 
   public MasterRenderer() {
-    shader = new BasicShader2();
+    shader = new BasicShader();
     entityRenderer = new EntityRenderer(shader);
     
     transform = new Transformation();
